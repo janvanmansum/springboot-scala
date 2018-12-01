@@ -37,6 +37,11 @@
             <artifactId>json-path</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.gnieh</groupId>
+            <artifactId>logback-journal</artifactId>
+            <version>0.3.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -47,6 +52,10 @@
                     <jvmArguments>
                         -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
                     </jvmArguments>
+                    <!-- Make sure we use the test logback config without the journal appender; journal logging will only work on the server -->
+                    <arguments>
+                        --logging.config=src/test/resources/logback-spring.xml
+                    </arguments>
                 </configuration>
             </plugin>
             <plugin>
