@@ -1,0 +1,13 @@
+[Unit]
+Description=Spring Boot Scala Test
+
+[Service]
+ExecStart=/bin/java -jar /opt/dans.knaw.nl/bin/springboot-scala-1.0.0-SNAPSHOT.jar \
+    --spring.config.location=classpath:/application.yml,/etc/opt/dans.knaw.nl/springboot-scala/application.yml
+SuccessExitStatus=143
+
+User=springboot-scala
+Group=springboot-scala
+
+[Install]
+WantedBy=multi-user.target

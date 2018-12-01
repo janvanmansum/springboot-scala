@@ -27,4 +27,16 @@ This is really something to standardize within the team. Main points learned so 
     the command line (or as system property). This could be mostly comments
     similar to the default Tomcat or Apache HTTP config files.
 
+Logging
+-------
+By default Spring Boot configures logging mostly as you would want it. Also, you can
+customize it by setting values in the Spring environment. They determine to what file
+to output the logging and the levels of the various loggers.
 
+If you want to customize beyond that you need to provide your own logging config file,
+which can be a logback.xml. Fortunately, you can include the defaults, so that you don't
+have to redefine most of the stuff you do want. Somehow logger definitions defined are
+ignored or overwritten, so you must use the spring environment to set your logging levels.
+
+So far the only reason I can see to want to use a custom logback.xml is to add a journal
+appender.

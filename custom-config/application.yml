@@ -1,0 +1,4 @@
+template: "hi-dee-hi, %s!"
+logging:
+  level:
+    nl.knaw.dans.test: INFO

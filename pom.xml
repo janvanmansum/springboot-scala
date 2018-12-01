@@ -9,7 +9,7 @@
     </parent>
     <groupId>nl.knaw.dans.test</groupId>
     <artifactId>springboot-scala</artifactId>
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>Springboot Scala Example</name>
     <properties>
         <java.version>1.8</java.version>

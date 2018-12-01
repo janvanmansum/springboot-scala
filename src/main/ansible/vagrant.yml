@@ -1,0 +1,62 @@
+- hosts: all
+  become: yes
+  tasks:
+
+    - name: Install supporting software
+      yum:
+        name:
+          - java-1.8.0-openjdk
+          - httpd
+          - mod_ssl
+
+    - name: Copy virtual host config
+      copy:
+        src: test.dans.knaw.nl.conf
+        dest: /etc/httpd/conf.d
+
+    - name: create self-signed SSL cert
+      command: >-
+        openssl req -new -nodes -x509 -subj "/C=NL/ST=Zuid-Holland/L=Den Haag/O=DANS/CN=dans.knaw.nl"
+        -days 365 -keyout /etc/ssl/certs/test.key
+        -out /etc/ssl/certs/test.crt -extensions v3_ca
+      args:
+        creates: /etc/ssl/certs/test.crt
+
+    - name: Remove default ssl config
+      file:
+        name: /etc/httpd/conf.d/ssl.conf
+        state: absent
+
+    - name: Create springboot-scala user
+      user:
+        name: springboot-scala
+        system: yes
+
+    - name: Create directories
+      file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - /opt/dans.knaw.nl/bin/
+        - /etc/opt/dans.knaw.nl/springboot-scala/
+
+    - name: Copy jar
+      copy:
+        src: ../../../target/springboot-scala-1.0.0-SNAPSHOT.jar
+        dest: /opt/dans.knaw.nl/bin/
+
+    - name: Copy config
+      copy:
+        src: application.yml
+        dest: /etc/opt/dans.knaw.nl/springboot-scala/application.yml
+
+    - name: Copy systemd unit
+      copy:
+        src: springboot-scala.service
+        dest: /usr/lib/systemd/system/
+
+    - name: Start and enable service
+      service:
+        name: springboot-scala
+        state: restarted
+        enabled: yes
