@@ -55,8 +55,12 @@
         src: springboot-scala.service
         dest: /usr/lib/systemd/system/
 
-    - name: Start and enable service
+    - name: Start and enable services
       service:
-        name: springboot-scala
+        name: "{{ item }}"
         state: restarted
         enabled: yes
+      with_items:
+        - springboot-scala
+        - httpd
+

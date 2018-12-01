@@ -1,0 +1,4 @@
+logging:
+  level:
+    # Overriding the default here from INFO to DEBUG!
+    nl.knaw.dans.test: DEBUG

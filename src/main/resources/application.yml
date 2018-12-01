@@ -1,4 +1,4 @@
 template: "Resources say hi: %s!"
 logging:
   level:
-    nl.knaw.dans.test: DEBUG
+    nl.knaw.dans.test: INFO
