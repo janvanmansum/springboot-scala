@@ -1,5 +1,8 @@
 package nl.knaw.dans.test
 
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.stereotype.{ Component, Repository }
+
 import scala.beans.BeanProperty
 
 /*
