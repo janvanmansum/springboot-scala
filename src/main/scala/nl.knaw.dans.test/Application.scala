@@ -2,7 +2,6 @@ package nl.knaw.dans.test
 
 import org.springframework.boot.autoconfigure.{ EnableAutoConfiguration, SpringBootApplication }
 import org.springframework.boot.SpringApplication
-import org.springframework.context.annotation.{ ComponentScan, Configuration }
 
 /*
  * Attention! A class and a companion object are needed here. The annotation has to be added to the class
